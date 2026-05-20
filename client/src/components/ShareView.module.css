@@ -1,0 +1,52 @@
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.header { margin-bottom: 2rem; }
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.backBtn {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+
+.backBtn:hover { opacity: 0.75; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-faint);
+  font-size: 14px;
+}
+
+.error {
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-muted);
+}
+
+.error p { margin-bottom: 1rem; font-size: 15px; }
