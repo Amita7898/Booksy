@@ -3,14 +3,14 @@ import BookCard from "./BookCard";
 import styles from "./Home.module.css";
 
 const MOODS = [
-  { label: "⚡ Thrilling", value: "something thrilling and fast-paced" },
-  { label: "🧠 Philosophical", value: "thought-provoking and philosophical" },
-  { label: "☕ Cozy", value: "a cozy, feel-good story" },
-  { label: "🥹 Emotional", value: "emotionally moving and heartfelt" },
-  { label: "🌑 Dark", value: "dark and mysterious" },
-  { label: "😂 Funny", value: "funny and light-hearted" },
-  { label: "🌌 Epic", value: "an epic fantasy or sci-fi world" },
-  { label: "📖 True Story", value: "a gripping true story or biography" },
+  { label: "Thrilling", value: "something thrilling and fast-paced" },
+  { label: "Philosophical", value: "thought-provoking and philosophical" },
+  { label: "Cozy", value: "a cozy, feel-good story" },
+  { label: "Emotional", value: "emotionally moving and heartfelt" },
+  { label: "Dark", value: "dark and mysterious" },
+  { label: "Funny", value: "funny and light-hearted" },
+  { label: "Epic", value: "an epic fantasy or sci-fi world" },
+  { label: "True Story", value: "a gripping true story or biography" },
 ];
 
 export default function Home() {
@@ -59,8 +59,9 @@ export default function Home() {
         body: JSON.stringify({ books, query: lastQuery }),
       });
       const data = await res.json();
-      setShareUrl(data.shareUrl);
-      await navigator.clipboard.writeText(data.shareUrl);
+      const shareLink = `https://lazybooksy.netlify.app/share/${data.shareId}`;
+      setShareUrl(shareLink);
+      await navigator.clipboard.writeText(shareLink);
     } catch {
       setShareUrl("Failed to generate share link");
     } finally {
@@ -83,11 +84,7 @@ export default function Home() {
       <section className={styles.searchSection}>
         <div className={styles.chips}>
           {MOODS.map((m) => (
-            <button
-              key={m.value}
-              className={styles.chip}
-              onClick={() => handleChip(m.value)}
-            >
+            <button key={m.value} className={styles.chip} onClick={() => handleChip(m.value)}>
               {m.label}
             </button>
           ))}
@@ -116,9 +113,7 @@ export default function Home() {
               <span className={styles.dots}>
                 <span /><span /><span />
               </span>
-            ) : (
-              <>📖 Find Books</>
-            )}
+            ) : <>Find Books</>}
           </button>
         </div>
       </section>
@@ -134,18 +129,14 @@ export default function Home() {
                 {books.length} books for &ldquo;{lastQuery}&rdquo;
               </p>
             </div>
-            <button
-              className={styles.shareBtn}
-              onClick={handleShare}
-              disabled={sharing}
-            >
-              {sharing ? "..." : "🔗 Share"}
+            <button className={styles.shareBtn} onClick={handleShare} disabled={sharing}>
+              {sharing ? "..." : "Share"}
             </button>
           </div>
 
           {shareUrl && (
             <div className={styles.shareToast}>
-              ✓ Link copied! <span className={styles.shareLink}>{shareUrl}</span>
+              Link copied! <span className={styles.shareLink}>{shareUrl}</span>
             </div>
           )}
 
@@ -159,7 +150,6 @@ export default function Home() {
 
       {books.length === 0 && !loading && !error && (
         <div className={styles.empty}>
-          <span>📚</span>
           <p>Your recommendations will appear here</p>
         </div>
       )}

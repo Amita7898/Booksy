@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://lazybooksy.netlify.app" }));
 app.use(express.json());
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
@@ -81,7 +81,7 @@ app.post("/api/share", (req, res) => {
   const { books, query } = req.body;
   const id = uuidv4().slice(0, 8);
   shares[id] = { books, query, createdAt: new Date().toISOString() };
-  res.json({ shareId: id, shareUrl: `http://localhost:5173/share/${id}` });
+  res.json({ shareId: id, shareUrl: `https://lazybooksy.netlify.app/share/${id}` });
 });
 app.get("/api/share/:id", (req, res) => {
   const share = shares[req.params.id];
