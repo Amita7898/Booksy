@@ -45,10 +45,7 @@ export default function BookCard({ book, index }) {
   };
 
   return (
-    <div
-      className={styles.card}
-      style={{ animationDelay: `${index * 0.05}s` }}
-    >
+    <div className={styles.card} style={{ animationDelay: `${index * 0.05}s` }}>
       <div className={styles.coverArea}>
         {coverLoading ? (
           <div className={styles.coverSkeleton} style={{ background: spineColor }} />
@@ -56,7 +53,7 @@ export default function BookCard({ book, index }) {
           <img src={cover} alt={book.title} className={styles.cover} />
         ) : (
           <div className={styles.coverFallback} style={{ background: spineColor }}>
-            <span className={styles.coverEmoji}>{book.emoji}</span>
+            <span className={styles.coverInitial}>{book.title?.charAt(0)}</span>
           </div>
         )}
       </div>
