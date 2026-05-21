@@ -9,7 +9,7 @@ export default function ShareView() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/share/${shareId}`)
+    fetch(`https://lazybooksy.onrender.com/api/share/${shareId}`)
       .then((r) => {
         if (!r.ok) throw new Error();
         return r.json();
@@ -22,7 +22,7 @@ export default function ShareView() {
     return (
       <main className={styles.main}>
         <div className={styles.error}>
-          <p>This share link is no longer valid.</p>
+          <p>This share link has expired or is no longer valid.</p>
           <Link to="/" className={styles.backBtn}>Go to BookWise →</Link>
         </div>
       </main>
